@@ -1,8 +1,10 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+var createError = require('http-errors'),
+    express = require('express'),
+    path = require('path'),
+    cookieParser = require('cookie-parser'),
+    bodyParser = require('body-parser'),
+    logger = require('morgan'),
+    morganBody = require('morgan-body');
 
 var indexRouter = require('./routes/index');
 
@@ -10,10 +12,14 @@ require('./domstubs.js').setStubs(global);
 
 var app = express();
 
-app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(bodyParser.json());
+app.use(logger('combined'));
+
+// hook morganBody to express app
+//morganBody(app);
 
 app.use('/', indexRouter);
 
@@ -32,5 +38,6 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.send('error');
 });
+
 
 module.exports = app;

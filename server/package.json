@@ -1,19 +1,20 @@
 {
-  "name": "wissen",
-  "version": "0.0.0",
+  "name": "wissen-server",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "start": "node ./bin/www"
   },
   "dependencies": {
+    "atob": "^2.1.1",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
     "express": "~4.16.0",
-    "http-errors": "~1.6.2",
+    "http-errors": "^1.6.3",
     "lodash": "^4.17.5",
     "morgan": "~1.9.0",
+    "morgan-body": "^2.4.0",
     "multer": "^1.3.0",
-    "pdf-converter": "file:pdf-converter-1.0.0.tgz",
-    "pug": "2.0.0-beta11"
+    "pdf-converter": "file:pdf-converter-1.1.1.tgz"
   }
 }
