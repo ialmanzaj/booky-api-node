@@ -18,7 +18,6 @@ router.post('/', (req, res) => {
       res.status(500).send('Something broke!');
     });
   } else {
-
     upload(req, res, (err) => {
       if (err) {
         // An error occurred when uploading
@@ -30,6 +29,7 @@ router.post('/', (req, res) => {
       const file = req.file;
 
       const pdfData = atob(file.buffer);
+
       converter.convertToMarkdownBuffer({data: pdfData}).then(content => {
         //console.log("content ", content);
         res.status(200).send(content);
@@ -37,75 +37,9 @@ router.post('/', (req, res) => {
         console.log(err);
         res.status(500).send('Something broke!');
       });
-
     });
-
   }
 });
 
-router.route('/convert').post(upload, (req, res, next) => {
-
-  upload(req, res, (err) => {
-    if (err) {
-      // An error occurred when uploading
-      console.log('An error occurred when uploading', err);
-      return
-    }
-
-    //console.log('All good');
-    console.log('req', req);
-    const file = req.file;
-    const files = req.files;
-    const body = req.body;
-
-    //console.log('body', body);
-    //console.log('file', file);
-    //console.log('files', files);
-
-    const buffer = body.book;
-    //console.log('buffer', buffer);
-    const pdfData = atob(buffer);
-    //console.log('pdfData', pdfData);
-
-    //res.status(200);
-    //res.send('good from now');
-  });
-
-  /*
-    if (buffer) {
-        converter.convertToMarkdownBuffer({data: pdfData}).then(content => {
-          //console.log("content ", content);
-          res.status(200).send(content);
-        }).catch((err) => {
-          console.log(err);
-          res.status(500).send('Something broke!');
-        });
-    }
-    */
-
-});
-/*
-
-router.route('/convert').post(upload, (req, res) => {
-  console.log('convert');
-  const file = req.file;
-  const obj = req.body;
-  const buffer = obj.book;
-  console.log('buffer', buffer);
-  const pdfData = atob(buffer);
-
-  if (buffer) {
-      converter.convertToMarkdownBuffer({data: pdfData}).then(content => {
-        //console.log("content ", content);
-        res.status(200).send(content);
-      }).catch((err) => {
-        console.log(err);
-        res.status(500).send('Something broke!');
-      });
-  }
-
-});
-
-*/
 
 module.exports = router;
