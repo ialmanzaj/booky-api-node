@@ -19,7 +19,7 @@ app.use(bodyParser.json());
 app.use(logger('combined'));
 
 // hook morganBody to express app
-//morganBody(app);
+morganBody(app);
 
 app.use('/', indexRouter);
 
