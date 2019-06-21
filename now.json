@@ -1,0 +1,10 @@
+{
+  "name": "wissen-server",
+  "version": 2,
+  "builds": [
+    { "src": "api/server.js", "use": "@now/node-server", "config": { "maxLambdaSize": "20mb" } }
+  ],
+  "routes": [
+    { "src": "/", "dest": "api/server.js" }
+  ]
+}

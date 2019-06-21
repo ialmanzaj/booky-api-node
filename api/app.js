@@ -6,7 +6,7 @@ var createError = require('http-errors'),
     logger = require('morgan'),
     morganBody = require('morgan-body');
 
-var indexRouter = require('./routes/index');
+var indexRouter = require('./index');
 
 require('./domstubs.js').setStubs(global);
 
